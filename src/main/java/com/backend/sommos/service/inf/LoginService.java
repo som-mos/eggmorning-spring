@@ -1,6 +1,8 @@
 package com.backend.sommos.service.inf;
 
-public interface LoginService {
+import org.springframework.security.core.userdetails.UserDetailsService;
+
+public interface LoginService extends UserDetailsService{
 
     boolean login(String id, String password);
 

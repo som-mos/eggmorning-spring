@@ -12,22 +12,18 @@ import lombok.AllArgsConstructor;
 
 @Data
 @Entity
-@AllArgsConstructor
+@AllArgsConstructor	// 필요한지 확인해보기
 @NoArgsConstructor
 public class User {
 
 	@Id
-	@Column(name = "seq")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int seq;
 
-	@Column(name = "username")
 	private String username;
 
-	@Column(name = "password")
 	private String password;
 
-	@Column(name = "enabled")
 	private boolean enabled;
 
 }

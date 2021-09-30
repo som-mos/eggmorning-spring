@@ -1,4 +1,4 @@
-package com.backend.sommos.security.dto;
+package com.backend.sommos.entities;
 
 import java.util.Collection;
 

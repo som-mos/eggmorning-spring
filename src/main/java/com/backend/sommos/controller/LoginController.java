@@ -5,6 +5,7 @@ import com.backend.sommos.service.impl.LoginServiceImpl;
 import com.backend.sommos.service.inf.LoginService;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +17,7 @@ public class LoginController {
     private LoginService loginService;
 
     @Autowired
-    public LoginController(LoginService loginService) {
+    public LoginController(@Qualifier("loginService")LoginService loginService) {
         this.loginService = loginService;
     }
 
@@ -28,9 +29,7 @@ public class LoginController {
 
     @ResponseBody
     @RequestMapping("signup")
-    public User signup(@RequestBody User reqBody){
-        User user =
+    public String signup(@RequestBody User reqBody){
         return "ok";
     }
-
 }

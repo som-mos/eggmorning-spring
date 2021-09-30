@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("loginService")
 public class LoginServiceImpl implements LoginService {
 
     private UsersRepository usersRepository;
@@ -20,8 +20,4 @@ public class LoginServiceImpl implements LoginService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return null;
     }
-
-//    public User save(User user) {
-//        return usersRepository.save(user);
-//    }
 }

@@ -1,4 +1,4 @@
-package com.backend.sommos.security.service;
+package com.backend.sommos.service;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -6,8 +6,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.backend.sommos.entities.User;
-import com.backend.sommos.security.dto.SomUserDetails;
-import com.backend.sommos.service.inf.LoginService;
+import com.backend.sommos.entities.SomUserDetails;
 
 @Service("somUserDetailsService")
 public class SomUserDetailsService implements UserDetailsService {

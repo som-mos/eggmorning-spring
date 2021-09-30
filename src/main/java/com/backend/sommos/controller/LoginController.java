@@ -1,10 +1,12 @@
 package com.backend.sommos.controller;
 
+import com.backend.sommos.entities.User;
 import com.backend.sommos.service.impl.LoginServiceImpl;
 import com.backend.sommos.service.inf.LoginService;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -21,6 +23,13 @@ public class LoginController {
     @ResponseBody
     @RequestMapping("session1")
     public String login(){
+        return "ok";
+    }
+
+    @ResponseBody
+    @RequestMapping("signup")
+    public User signup(@RequestBody User reqBody){
+        User user =
         return "ok";
     }
 

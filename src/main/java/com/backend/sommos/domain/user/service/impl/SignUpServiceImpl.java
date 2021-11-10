@@ -1,14 +1,11 @@
-package com.backend.sommos.service.impl;
+package com.backend.sommos.domain.user.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.backend.sommos.entities.User;
-import com.backend.sommos.repository.UsersRepository;
-import com.backend.sommos.service.inf.LoginService;
-import com.backend.sommos.service.inf.SignUpService;
+import com.backend.sommos.domain.user.entity.User;
+import com.backend.sommos.domain.user.repository.UsersRepository;
+import com.backend.sommos.domain.user.service.inf.SignUpService;
 
 @Service("signUpService")
 public class SignUpServiceImpl implements SignUpService {

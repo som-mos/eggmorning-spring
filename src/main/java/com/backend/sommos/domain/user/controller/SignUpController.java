@@ -1,4 +1,4 @@
-package com.backend.sommos.controller;
+package com.backend.sommos.domain.user.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.backend.sommos.entities.User;
-import com.backend.sommos.service.inf.SignUpService;
+import com.backend.sommos.domain.user.entity.User;
+import com.backend.sommos.domain.user.service.inf.SignUpService;
 
 @Controller
 public class SignUpController {

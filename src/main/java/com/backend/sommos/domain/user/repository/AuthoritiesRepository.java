@@ -1,6 +1,6 @@
-package com.backend.sommos.repository;
+package com.backend.sommos.domain.user.repository;
 
-import com.backend.sommos.entities.Authority;
+import com.backend.sommos.domain.user.entity.Authority;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

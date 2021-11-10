@@ -1,7 +1,7 @@
-package com.backend.sommos.security.config;
+package com.backend.sommos.global.config;
 
 
-import com.backend.sommos.service.SomUserDetailsService;
+import com.backend.sommos.domain.user.service.SomUserDetailsService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

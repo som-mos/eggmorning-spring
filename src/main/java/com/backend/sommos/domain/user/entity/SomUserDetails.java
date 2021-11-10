@@ -1,4 +1,4 @@
-package com.backend.sommos.entities;
+package com.backend.sommos.domain.user.entity;
 
 import java.util.Collection;
 

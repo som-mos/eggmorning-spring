@@ -1,9 +1,8 @@
-package com.backend.sommos.controller;
+package com.backend.sommos.domain.user.controller;
 
-import com.backend.sommos.entities.User;
-import com.backend.sommos.service.impl.LoginServiceImpl;
-import com.backend.sommos.service.inf.LoginService;
-import lombok.extern.java.Log;
+import com.backend.sommos.domain.user.entity.User;
+import com.backend.sommos.domain.user.service.inf.LoginService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;

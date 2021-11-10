@@ -1,11 +1,11 @@
-package com.backend.sommos.service.impl;
+package com.backend.sommos.domain.user.service.impl;
 
-import com.backend.sommos.entities.User;
-import com.backend.sommos.repository.UsersRepository;
-import com.backend.sommos.service.inf.LoginService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import com.backend.sommos.domain.user.repository.UsersRepository;
+import com.backend.sommos.domain.user.service.inf.LoginService;
 
 @Service("loginService")
 public class LoginServiceImpl implements LoginService {

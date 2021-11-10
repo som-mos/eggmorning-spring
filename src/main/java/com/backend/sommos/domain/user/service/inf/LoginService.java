@@ -1,4 +1,4 @@
-package com.backend.sommos.service.inf;
+package com.backend.sommos.domain.user.service.inf;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 

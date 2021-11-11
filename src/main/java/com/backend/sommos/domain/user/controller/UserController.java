@@ -12,11 +12,11 @@ import com.backend.sommos.domain.user.entity.User;
 import com.backend.sommos.domain.user.service.inf.SignUpService;
 
 @Controller
-public class SignUpController {
+public class UserController {
 	SignUpService signUpService;
 
 	@Autowired
-	public SignUpController(@Qualifier("signUpService") SignUpService signUpService){
+	public UserController(@Qualifier("signUpService") SignUpService signUpService){
 		this.signUpService = signUpService;
 	}
 
@@ -28,7 +28,7 @@ public class SignUpController {
 
 	@ResponseBody
 	@GetMapping("user")
-	public String test(){
+	public String getUser(){
 		return "test";
 	}
 }

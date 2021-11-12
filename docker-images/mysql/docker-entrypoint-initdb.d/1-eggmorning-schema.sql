@@ -82,7 +82,7 @@ CREATE TABLE `hotel` (
   `address` varchar(256) NOT NULL,
   `phone` varchar(16) NOT NULL,
   `level` int(1) NOT NULL DEFAULT '0',
-  `rating` int(11) NOT NULL DEFAULT '0',
+  `rating` double(3,1) NOT NULL DEFAULT '0',
   `thumbnail` varchar(256) NOT NULL DEFAULT '',
   `regdate` datetime NOT NULL,
   `moddate` datetime NOT NULL,

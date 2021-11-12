@@ -1,4 +1,4 @@
-package com.backend.sommos.domain.hotel.entity;
+package com.backend.sommos.domain.hotel.dto;
 
 import java.sql.Timestamp;
 
@@ -12,13 +12,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Entity(name="hotel")
-@AllArgsConstructor	// 필요한지 확인해보기 , 모든 필드 값을 파라미터로 받는 생성자를 만듦
-@NoArgsConstructor	// 파라미터가 없는 생성자를 생성합니다.
-public class Hotel {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class HotelDTO {
 	private int hotelNo;
 	private String name;
 	private String address;
@@ -27,5 +21,4 @@ public class Hotel {
 	private double rating;
 	private String thumbnail;
 	private Timestamp regdate;
-	private Timestamp moddate;
 }

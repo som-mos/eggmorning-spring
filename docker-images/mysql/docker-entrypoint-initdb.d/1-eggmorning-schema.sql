@@ -23,12 +23,13 @@ DROP TABLE IF EXISTS `coupon`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `coupon` (
-  `couponnum` bigint(20) NOT NULL AUTO_INCREMENT,
-  `couponname` varchar(50) NOT NULL DEFAULT '0',
+  `coupon_no` bigint(20) NOT NULL AUTO_INCREMENT,
+  `coupon_name` varchar(50) NOT NULL DEFAULT '0',
   `content` varchar(200) NOT NULL DEFAULT '0',
-  `discount` int(11) NOT NULL DEFAULT '0',
-  `date_manuf` datetime NOT NULL,
-  PRIMARY KEY (`couponnum`)
+  `discount_rate` int(11) NOT NULL DEFAULT '0',
+  `regdate` datetime NOT NULL,
+  `moddate` datetime NOT NULL,
+  PRIMARY KEY (`coupon_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -50,12 +51,12 @@ DROP TABLE IF EXISTS `food`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `food` (
   `seq` bigint(20) NOT NULL AUTO_INCREMENT,
-  `hotelnum` bigint(20) NOT NULL,
-  `foodname` varchar(50) NOT NULL DEFAULT '',
-  `foodpicture` binary(50) NOT NULL DEFAULT '\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0',
+  `hotel_no` bigint(20) NOT NULL,
+  `food_name` varchar(50) NOT NULL DEFAULT '',
+  `food_picture` varchar(256) NOT NULL DEFAULT '',
   PRIMARY KEY (`seq`),
-  KEY `FK_food_hotel_info` (`hotelnum`),
-  CONSTRAINT `FK_food_hotel_info` FOREIGN KEY (`hotelnum`) REFERENCES `hotel` (`hotelnum`)
+  KEY `FK_food_hotel_info` (`hotel_no`),
+  CONSTRAINT `FK_food_hotel_info` FOREIGN KEY (`hotel_no`) REFERENCES `hotel` (`hotel_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -76,13 +77,16 @@ DROP TABLE IF EXISTS `hotel`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `hotel` (
-  `hotelnum` bigint(20) NOT NULL AUTO_INCREMENT,
-  `hotelname` varchar(50) NOT NULL,
-  `hoteladdress` text NOT NULL,
+  `hotel_no` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(128) NOT NULL,
+  `address` varchar(256) NOT NULL,
+  `phone` varchar(16) NOT NULL,
+  `level` int(1) NOT NULL DEFAULT '0',
   `rating` int(11) NOT NULL DEFAULT '0',
-  `hotelpicture` binary(50) NOT NULL DEFAULT '0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0',
-  `foodpicture` binary(50) NOT NULL DEFAULT '0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0',
-  PRIMARY KEY (`hotelnum`) USING BTREE
+  `thumbnail` varchar(256) NOT NULL DEFAULT '',
+  `regdate` datetime NOT NULL,
+  `moddate` datetime NOT NULL,
+  PRIMARY KEY (`hotel_no`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -106,8 +110,9 @@ CREATE TABLE `news` (
   `seq` bigint(20) NOT NULL AUTO_INCREMENT,
   `title` varchar(50) NOT NULL,
   `content` text NOT NULL,
-  `picture` binary(50) NOT NULL DEFAULT '0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0',
-  `date_regi` binary(50) NOT NULL DEFAULT '0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0',
+  `picture` varchar(256) NOT NULL DEFAULT '',
+  `regdate` varchar(256) NOT NULL DEFAULT '0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0',
+  `moddate` varchar(256) NOT NULL DEFAULT '0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0',
   PRIMARY KEY (`seq`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -130,16 +135,16 @@ DROP TABLE IF EXISTS `review`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `review` (
   `seq` bigint(20) NOT NULL AUTO_INCREMENT,
-  `usernum` bigint(20) NOT NULL DEFAULT '0',
-  `hotelnum` bigint(20) NOT NULL DEFAULT '0',
+  `user_no` bigint(20) NOT NULL DEFAULT '0',
+  `hotel_no` bigint(20) NOT NULL DEFAULT '0',
   `rating` int(11) NOT NULL DEFAULT '0',
   `text` text NOT NULL,
   `picture` binary(50) NOT NULL DEFAULT '0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0',
   PRIMARY KEY (`seq`),
-  KEY `FK_review_user` (`usernum`),
-  KEY `FK_review_hotel_info` (`hotelnum`),
-  CONSTRAINT `FK_review_hotel_info` FOREIGN KEY (`hotelnum`) REFERENCES `hotel` (`hotelnum`),
-  CONSTRAINT `FK_review_user` FOREIGN KEY (`usernum`) REFERENCES `user` (`seq`)
+  KEY `FK_review_user` (`user_no`),
+  KEY `FK_review_hotel_info` (`hotel_no`),
+  CONSTRAINT `FK_review_hotel_info` FOREIGN KEY (`hotel_no`) REFERENCES `hotel` (`hotel_no`),
+  CONSTRAINT `FK_review_user` FOREIGN KEY (`user_no`) REFERENCES `user` (`user_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -183,27 +188,18 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
-  `seq` bigint(20) NOT NULL AUTO_INCREMENT,
-  `username` varchar(100) NOT NULL,
+  `user_no` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `enabled` bit(1) NOT NULL,
   `nickname` varchar(50) DEFAULT NULL,
   `phone` int(11) DEFAULT NULL,
   `address` text,
   `signup` datetime DEFAULT NULL,
-  PRIMARY KEY (`seq`) USING BTREE
+  PRIMARY KEY (`user_no`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `user`
---
-
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'test','test',_binary '\0',NULL,NULL,NULL,NULL),(6,'test2','test2',_binary '\0',NULL,NULL,NULL,NULL);
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `user_coupon`
@@ -214,16 +210,16 @@ DROP TABLE IF EXISTS `user_coupon`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user_coupon` (
   `seq` bigint(20) NOT NULL AUTO_INCREMENT,
-  `usernum` bigint(20) NOT NULL DEFAULT '0',
-  `couponnum` bigint(20) NOT NULL DEFAULT '0',
+  `user_no` bigint(20) NOT NULL DEFAULT '0',
+  `coupon_no` bigint(20) NOT NULL DEFAULT '0',
   `date_used` datetime DEFAULT NULL,
   `date_start` datetime NOT NULL,
   `date_end` datetime NOT NULL,
   PRIMARY KEY (`seq`),
-  KEY `FK_user_coupon_user` (`usernum`),
-  KEY `FK_user_coupon_coupon` (`couponnum`),
-  CONSTRAINT `FK_user_coupon_coupon` FOREIGN KEY (`couponnum`) REFERENCES `coupon` (`couponnum`),
-  CONSTRAINT `FK_user_coupon_user` FOREIGN KEY (`usernum`) REFERENCES `user` (`seq`)
+  KEY `FK_user_coupon_user` (`user_no`),
+  KEY `FK_user_coupon_coupon` (`coupon_no`),
+  CONSTRAINT `FK_user_coupon_coupon` FOREIGN KEY (`coupon_no`) REFERENCES `coupon` (`coupon_no`),
+  CONSTRAINT `FK_user_coupon_user` FOREIGN KEY (`user_no`) REFERENCES `user` (`user_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -244,12 +240,12 @@ DROP TABLE IF EXISTS `user_role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user_role` (
-  `user_id` bigint(20) NOT NULL,
-  `role_id` bigint(20) NOT NULL,
-  PRIMARY KEY (`user_id`,`role_id`),
-  KEY `FK_user_role_role` (`role_id`),
-  CONSTRAINT `FK_user_role_role` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`),
-  CONSTRAINT `FK_user_role_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`seq`)
+  `user_no` bigint(20) NOT NULL,
+  `role_no` bigint(20) NOT NULL,
+  PRIMARY KEY (`user_no`,`role_no`),
+  KEY `FK_user_role_role` (`role_no`),
+  CONSTRAINT `FK_user_role_role` FOREIGN KEY (`role_no`) REFERENCES `role` (`id`),
+  CONSTRAINT `FK_user_role_user` FOREIGN KEY (`user_no`) REFERENCES `user` (`user_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

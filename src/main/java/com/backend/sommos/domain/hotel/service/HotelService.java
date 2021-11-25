@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import com.backend.sommos.domain.hotel.entity.Hotel;
@@ -19,7 +22,7 @@ public class HotelService {
 		this.hotelRepository = hotelRepository;
 	}
 
-	public List<Hotel> getTop3RatingHotel(){
-		return hotelRepository.findTop5ByOrderByRatingDesc();
+	public List<Hotel> getTopHotels(int size){
+		return hotelRepository.findAll(PageRequest.of(0, size, Sort.by(Sort.Direction.ASC, "rating"))).getContent();
 	}
 }

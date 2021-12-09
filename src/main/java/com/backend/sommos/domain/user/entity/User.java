@@ -1,5 +1,7 @@
 package com.backend.sommos.domain.user.entity;
 
+import java.util.Date;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,13 +19,18 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int seq;
-	private String username;
+	private int user_no;
+	private String name;
+	private String email;
 	private String password;
 	private boolean enabled;
+	private String nickname;
+	private String phone;
+	private String address;
+	private Date signup;
 
-	public User(String username, String password){
-		this.username = username;
+	public User(String name, String password){
+		this.name = name;
 		this.password = password;
 	}
 

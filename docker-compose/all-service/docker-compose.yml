@@ -5,7 +5,7 @@ services:
     image: eggmorning-mysql
     restart: always
     ports:
-      - 3306:3306
+      - 9306:3306
     environment:
       MYSQL_ROOT_PASSWORD: fJU8Cx.Hcce9s
       MYSQL_USER: eggmorning
@@ -16,9 +16,9 @@ services:
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
   eggmorning-spring-boot:
     image: adoptopenjdk:11
-    command: sh -c "chmod u+x ./gradlew && ./gradlew clean build -xtest && java -jar ./build/libs/sommos-0.0.1-SNAPSHOT.jar"
+    command: sh -c "chmod u+x ./gradlew && ./gradlew clean build -xtest -Pprofile=docker && java -Dspring.profiles.active=docker -jar ./build/libs/sommos-0.0.1-SNAPSHOT.jar"
     ports:
-      - 8080:8080
+      - 8090:8080
     working_dir: /app
     volumes:
       - ../../:/app

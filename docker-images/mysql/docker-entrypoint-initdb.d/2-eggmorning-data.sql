@@ -1,3 +1,5 @@
+
+
 INSERT INTO hotel(name, address, phone, level, rating, thumbnail, regdate, moddate)
 VALUES
     ("포시즌스 호텔 서울", "서울 종로구 새문안로 9", "02-6388-5000", 5, 9.3, "https://www.fourseasons.com/alt/img-opt/~80.930.0,0000-144,2500-3000,0000-1687,5000/publish/content/dam/fourseasons/images/web/SKO/SKO_757_original.jpg", now(), now()),

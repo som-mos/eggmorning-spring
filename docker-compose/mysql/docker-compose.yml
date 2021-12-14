@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  eggmorning-mysql:
+    image: eggmorning-mysql
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: fJU8Cx.Hcce9s
+      MYSQL_USER: eggmorning
+      MYSQL_PASSWORD: eggmorning-pw
+      MYSQL_DATABASE: eggmorning
+      LC_ALL: C.UTF-8
+      TZ: Asia/Seoul
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci

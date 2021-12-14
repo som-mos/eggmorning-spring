@@ -1,4 +1,7 @@
-
+insert into user(email, name, nickname, password, enabled, phone, address, regdate, moddate)
+values
+    ('user1@domain.com', 'user1', 'egg', 'user1-pw', true, '010-0000-0000', 'simple address', now(), now()),
+    ('user2@domain.com', 'user2', 'morning', 'user2-pw', true, '010-0000-0000', 'simple address', now(), now());
 
 INSERT INTO hotel(name, address, phone, level, rating, thumbnail, regdate, moddate)
 VALUES

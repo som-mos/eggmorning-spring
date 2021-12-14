@@ -189,16 +189,17 @@ DROP TABLE IF EXISTS `user`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
   `user_no` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `nickname` varchar(50) DEFAULT NULL,
   `password` varchar(100) NOT NULL,
   `enabled` bit(1) NOT NULL,
-  `nickname` varchar(50) DEFAULT NULL,
-  `phone` int(11) DEFAULT NULL,
+  `phone` varchar(16) DEFAULT NULL,
   `address` text,
-  `signup` datetime DEFAULT NULL,
+  `regdate` datetime NOT NULL,
+  `moddate` datetime NOT NULL,
   PRIMARY KEY (`user_no`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

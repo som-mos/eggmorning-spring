@@ -1,4 +1,4 @@
-package com.backend.sommos.global.config.security.provider;
+package com.backend.sommos.global.security.provider;
 
 import java.util.ArrayList;
 
@@ -11,15 +11,15 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 
 import com.backend.sommos.domain.user.entity.User;
-import com.backend.sommos.domain.user.repository.UsersRepository;
+import com.backend.sommos.domain.user.repository.UserRepository;
 
 @Component
-public class SomAuthenticationProvider implements AuthenticationProvider {
+public class UserAuthenticationProvider implements AuthenticationProvider {
 
-	private UsersRepository usersRepository;
+	private UserRepository usersRepository;
 
 	@Autowired
-	public SomAuthenticationProvider(UsersRepository usersRepository){
+	public UserAuthenticationProvider(UserRepository usersRepository){
 		super();
 		this.usersRepository = usersRepository;
 	}

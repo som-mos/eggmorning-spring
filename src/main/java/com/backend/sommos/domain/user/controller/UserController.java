@@ -1,34 +1,37 @@
 package com.backend.sommos.domain.user.controller;
 
+import com.backend.sommos.domain.user.entity.User;
+import com.backend.sommos.domain.user.service.inf.UserService;
+import com.backend.sommos.global.network.Response;
+import com.backend.sommos.global.security.annotation.RoleAdmin;
+import com.backend.sommos.global.security.annotation.RoleViewer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.backend.sommos.domain.user.entity.User;
-import com.backend.sommos.domain.user.service.inf.SignUpService;
-
-@Controller
+@RestController
 public class UserController {
-	SignUpService signUpService;
+	UserService userService;
 
 	@Autowired
-	public UserController(@Qualifier("signUpService") SignUpService signUpService){
-		this.signUpService = signUpService;
+	public UserController(UserService userService){
+		this.userService = userService;
 	}
 
-	@ResponseBody
+	@RoleAdmin
 	@PostMapping("user")
-	public boolean createUser(@RequestParam("id")String id, @RequestParam("password")String password){
-		return this.signUpService.signUp(new User(id, password));
+	public ResponseEntity<Boolean> createUser(@RequestParam("id")String id, @RequestParam("password")String password){
+		this.userService.createUser(new User(id, password));
+		return Response.success(true);
 	}
 
-	@ResponseBody
+	@RoleViewer
 	@GetMapping("user")
-	public String getUser(){
-		return "test";
+	public ResponseEntity<User> getUser(@RequestParam("email") String email){
+		User user =this.userService.getUserByEmail(email);
+		return Response.success(user);
 	}
 }

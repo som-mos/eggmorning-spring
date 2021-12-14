@@ -1,5 +1,7 @@
 package com.backend.sommos.domain.user.mapper;
 
+import org.springframework.transaction.TransactionManager;
+
 import com.backend.sommos.domain.user.dto.UserDTO;
 import com.backend.sommos.domain.user.entity.User;
 

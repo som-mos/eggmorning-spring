@@ -1,9 +1,20 @@
-insert into user(email, name, nickname, password, enabled, phone, address, regdate, moddate)
+insert into USER(email, name, nickname, salt, password, enabled, phone, address, reg_date, mod_date)
 values
-    ('user1@domain.com', 'user1', 'egg', 'user1-pw', true, '010-0000-0000', 'simple address', now(), now()),
-    ('user2@domain.com', 'user2', 'morning', 'user2-pw', true, '010-0000-0000', 'simple address', now(), now());
+    ('user1@domain.com', 'user1', 'egg', 'abcdefgh','$2a$10$w4579FKiDMqYiPSy0yaHE.cWp32NgcgJdTqwry9dFIYbQ.JmxTd1C', true, '010-0000-0000', 'simple address', now(), now()),
+    ('user2@domain.com', 'user2', 'morning', '12345678','$2a$10$npXaybo7S8OklxIxkigGmeQHb3VsnVisxzvKFjXTB1MXybDivq.WS', true, '010-0000-0000', 'simple address', now(), now());
 
-INSERT INTO hotel(name, address, phone, level, rating, thumbnail, regdate, moddate)
+insert into ROLE(role_no, name)
+values
+       (1, 'ROLE_ADMIN'),
+       (2, 'ROLE_VIEWER');
+
+insert into USER_ROLE(user_no, role_no)
+values
+    (1, 1),
+    (1, 2),
+    (2, 2);
+
+INSERT INTO HOTEL(name, address, phone, level, rating, thumbnail, reg_date, mod_date)
 VALUES
     ("포시즌스 호텔 서울", "서울 종로구 새문안로 9", "02-6388-5000", 5, 9.3, "https://www.fourseasons.com/alt/img-opt/~80.930.0,0000-144,2500-3000,0000-1687,5000/publish/content/dam/fourseasons/images/web/SKO/SKO_757_original.jpg", now(), now()),
     ("신라 호텔 서울", "서울시 중구 동호로 249", "02-2233-3131", 5, 9.2, "https://www.shilla.net/images/contents/dining/PAR/R0000000081Z_KR.jpg", now(), now()),

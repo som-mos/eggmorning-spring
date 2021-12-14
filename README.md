@@ -8,14 +8,19 @@ Egg Morning is a mobile app service for booking hotel breakfast packages.
 
 You can start with this following:
 
-```
-> git clone https://github.com/som-mos/eggmorning-spring
+```bash
+$ git clone https://github.com/som-mos/eggmorning-spring
+
+# start server
+$ ./startServer.sh
+
+# check if server is running
+$ curl 'http://localhost:8080/hc'
+
+# stop server
+$ ./stopServer.sh
 ```
 
-> The framework we used
->   > 1. spring
->   > 2. Rest API
->   > 3. Graph QL
 
 
 

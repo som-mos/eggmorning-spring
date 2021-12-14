@@ -5,7 +5,7 @@ services:
     image: eggmorning-mysql
     restart: always
     ports:
-      - 9306:3306
+      - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: fJU8Cx.Hcce9s
       MYSQL_USER: eggmorning
@@ -18,7 +18,7 @@ services:
     image: adoptopenjdk:11
     command: sh -c "chmod u+x ./gradlew && ./gradlew clean build -xtest && java -jar ./build/libs/sommos-0.0.1-SNAPSHOT.jar"
     ports:
-      - 8090:8080
+      - 8080:8080
     working_dir: /app
     volumes:
-      - .:/app
+      - ../../:/app

@@ -8,8 +8,6 @@ import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.backend.eggmorning.global.constant.JwtConstant;
-import com.backend.eggmorning.global.constant.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -18,6 +16,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
+import com.backend.eggmorning.global.constant.JwtConstant;
+import com.backend.eggmorning.global.constant.Role;
 import com.backend.eggmorning.global.security.annotation.Public;
 import com.backend.eggmorning.global.security.service.inf.JwtService;
 
@@ -31,7 +31,7 @@ public class JwtInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        if(request.getMethod().equals("OPTION") || ((HandlerMethod)handler).getMethod().isAnnotationPresent(Public.class)){
+        if(request.getMethod().equals("OPTION") || isPublic(request, handler)){
             return true;
         }
 
@@ -44,6 +44,20 @@ public class JwtInterceptor implements HandlerInterceptor {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         return true;
+    }
+
+    private boolean isPublic(HttpServletRequest request, Object handler){
+        String publicUriRegEx = ".*(swagger|api-docs).*";
+
+        if(request.getRequestURI().matches(publicUriRegEx)){
+            return true;
+        }
+
+        if(handler instanceof HandlerMethod && ((HandlerMethod)handler).getMethod().isAnnotationPresent(Public.class)){
+            return true;
+        }
+
+        return false;
     }
 
     private String getAuthorizationToken(HttpServletRequest request) throws Exception {

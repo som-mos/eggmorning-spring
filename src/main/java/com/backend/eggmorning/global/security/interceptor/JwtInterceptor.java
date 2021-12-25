@@ -19,6 +19,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import com.backend.eggmorning.global.constant.JwtConstant;
 import com.backend.eggmorning.global.constant.Role;
 import com.backend.eggmorning.global.security.annotation.Public;
+import com.backend.eggmorning.global.security.exception.NoBearerTokenException;
 import com.backend.eggmorning.global.security.service.inf.JwtService;
 
 public class JwtInterceptor implements HandlerInterceptor {
@@ -30,7 +31,7 @@ public class JwtInterceptor implements HandlerInterceptor {
     }
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         if(request.getMethod().equals("OPTION") || isPublic(request, handler)){
             return true;
         }
@@ -60,15 +61,15 @@ public class JwtInterceptor implements HandlerInterceptor {
         return false;
     }
 
-    private String getAuthorizationToken(HttpServletRequest request) throws Exception {
+    private String getAuthorizationToken(HttpServletRequest request) {
         String authorizationHeader = request.getHeader("Authorization");
         if(authorizationHeader == null || authorizationHeader.equals("")){
-            throw new Exception();
+            throw new NoBearerTokenException();
         }
 
         String[] headerSplits = authorizationHeader.split(" ");
         if(headerSplits.length == 0 || headerSplits[0] == null || headerSplits[1] == null){
-            throw new Exception();
+            throw new NoBearerTokenException();
         }
 
         return headerSplits[1];

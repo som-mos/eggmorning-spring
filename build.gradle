@@ -9,6 +9,10 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
 configurations {
+	all {
+		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+	}
+
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
@@ -38,7 +42,8 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 
 	implementation 'io.springfox:springfox-boot-starter:3.0.0'
-//	implementation 'org.springdoc:springdoc-openapi-ui:1.6.2'
+
+	implementation 'org.springframework.boot:spring-boot-starter-log4j2:2.6.2'
 }
 
 test {

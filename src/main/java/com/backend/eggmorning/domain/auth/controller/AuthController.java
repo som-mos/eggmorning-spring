@@ -7,17 +7,22 @@ import com.backend.eggmorning.domain.user.entity.User;
 import com.backend.eggmorning.domain.user.service.inf.UserService;
 import com.backend.eggmorning.global.network.Response;
 import com.backend.eggmorning.global.security.annotation.Public;
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.InvalidMediaTypeException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+@Slf4j
 @RestController
 public class AuthController {
 	private AuthService authService;
@@ -34,10 +39,12 @@ public class AuthController {
 	public ResponseEntity<TokenResponse> login(@RequestBody BasicAuthentication authentication){
 		User user = this.userService.getUserByEmail(authentication.email);
 		if(user == null){
+			log.warn(authentication.email + " is not found");
 			throw new UsernameNotFoundException(authentication.email);
 		}
 
 		if(!authService.authenticate(authentication, user)){
+			log.warn(authentication.email + " authentication fail");
 			throw new BadCredentialsException("Basic Authentication Fail");
 		}
 

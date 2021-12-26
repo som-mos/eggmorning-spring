@@ -15,14 +15,19 @@ import java.util.Map;
 @Service("JwtService")
 public class JwtServiceImpl implements JwtService {
 
-    @Value("${security.jwt.secret}")
     private String secret;
-
-    @Value("#{${security.jwt.duration}}")
     private long tokenDuration;
-
-    @Value("#{${security.jwt.refresh.duration}}")
     private long refreshTokenDuration;
+
+    public JwtServiceImpl(
+        @Value("${security.jwt.secret}") String secret,
+        @Value("#{${security.jwt.duration}}") long tokenDuration,
+        @Value("#{${security.jwt.refresh.duration}}") long refreshTokenDuration
+    ){
+        this.secret = secret;
+        this.tokenDuration = tokenDuration;
+        this.refreshTokenDuration = refreshTokenDuration;
+    }
 
     @Override
     public String createToken(User user) {

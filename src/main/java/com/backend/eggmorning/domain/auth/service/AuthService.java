@@ -14,7 +14,6 @@ public class AuthService {
 	private JwtService jwtService;
 	private PasswordEncoder passwordEncoder;
 
-	@Autowired
 	public AuthService(JwtService jwtService, PasswordEncoder passwordEncoder) {
 		this.jwtService = jwtService;
 		this.passwordEncoder = passwordEncoder;

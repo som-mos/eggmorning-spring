@@ -12,7 +12,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     private JwtService jwtService;
 
-    @Autowired
     public WebMvcConfig(JwtService jwtService){
         this.jwtService = jwtService;
     }

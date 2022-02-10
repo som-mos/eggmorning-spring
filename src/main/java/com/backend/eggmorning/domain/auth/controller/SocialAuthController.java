@@ -26,7 +26,6 @@ public class SocialAuthController {
 	private AuthService authService;
 	private UserService userService;
 
-	@Autowired
 	public SocialAuthController(AuthService authService, UserService userService){
 		this.authService = authService;
 		this.userService = userService;

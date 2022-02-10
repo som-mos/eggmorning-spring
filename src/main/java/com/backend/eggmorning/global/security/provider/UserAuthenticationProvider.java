@@ -18,7 +18,6 @@ public class UserAuthenticationProvider implements AuthenticationProvider {
 
 	private UserRepository usersRepository;
 
-	@Autowired
 	public UserAuthenticationProvider(UserRepository usersRepository){
 		super();
 		this.usersRepository = usersRepository;

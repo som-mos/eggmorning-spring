@@ -16,7 +16,6 @@ public class HotelService {
 
 	private HotelRepository hotelRepository;
 
-	@Autowired
 	public HotelService(@Qualifier("hotelRepository")HotelRepository hotelRepository){
 		this.hotelRepository = hotelRepository;
 	}

@@ -25,7 +25,6 @@ import com.backend.eggmorning.global.security.service.inf.JwtService;
 public class JwtInterceptor implements HandlerInterceptor {
     JwtService jwtService;
 
-    @Autowired
     public JwtInterceptor(@Qualifier("JwtService") JwtService jwtService){
         this.jwtService = jwtService;
     }

@@ -13,6 +13,7 @@ import com.backend.eggmorning.domain.hotel.dto.HotelDTO;
 import com.backend.eggmorning.domain.hotel.entity.Hotel;
 import com.backend.eggmorning.domain.hotel.mapper.HotelMapper;
 import com.backend.eggmorning.domain.hotel.service.HotelService;
+import com.backend.eggmorning.global.security.annotation.Public;
 
 @Controller()
 @RequestMapping("hotel")
@@ -23,6 +24,7 @@ public class HotelController {
 		this.hotelService = hotelService;
 	}
 
+	@Public
 	@ResponseBody
 	@GetMapping("ranking/top")
 	public List<HotelDTO> getTopRatingHotel(@RequestParam("size") int size) {

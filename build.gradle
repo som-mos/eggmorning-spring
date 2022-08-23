@@ -1,7 +1,7 @@
 plugins {
-	id 'org.springframework.boot' version '2.5.2'
-	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-	id 'java'
+    id 'org.springframework.boot' version '2.7.3'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
 }
 
 group = 'com.backend'
@@ -9,53 +9,58 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
 configurations {
-	all {
-		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
-	}
+    all {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
 
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
 
 repositories {
-	mavenCentral()
-	maven {
-		url "https://plugins.gradle.org/m2/"
-	}
+    mavenCentral()
+    maven {
+        url "https://plugins.gradle.org/m2/"
+    }
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
+    // Web
+    implementation 'org.springframework.boot:spring-boot-starter-web'
 
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	runtimeOnly 'mysql:mysql-connector-java'
+    // Database
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    runtimeOnly 'mysql:mysql-connector-java'
 
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
-	implementation 'io.jsonwebtoken:jjwt:0.9.1'
+    // Security
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'
 
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	implementation 'org.springframework.security:spring-security-test'
+    // Test
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.security:spring-security-test'
 
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
+    // Logging
+    implementation 'org.springframework.boot:spring-boot-starter-log4j2'
 
-	implementation 'io.springfox:springfox-boot-starter:3.0.0'
-
-	implementation 'org.springframework.boot:spring-boot-starter-log4j2:2.6.2'
+    // Util
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    implementation 'io.springfox:springfox-boot-starter:3.0.0'
 }
 
 test {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
 
 ext.profile = (!project.hasProperty('profile') || !profile) ? 'dev' : profile
 
 sourceSets {
-	main {
-		resources {
-			srcDirs "src/main/resources", "src/main/resources-env/${profile}"
-		}
-	}
+    main {
+        resources {
+            srcDirs "src/main/resources", "src/main/resources-env/${profile}"
+        }
+    }
 }
